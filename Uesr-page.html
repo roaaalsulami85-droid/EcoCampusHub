@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  
+
+</head>
+<body>
+   <nav aria-label="Main">
+  <a href="home.html">Home</a>
+  <a href="login.html">Log-in</a>
+  <a href="EcoCampusHub_R3.html">Register</a>
+  <a href="EcoCampusHub_P9.html">Profile</a>
+  <a href="Eco-Challenges.html">Eco Challenges</a>
+  <a href="event.html">Event</a>
+  <a href="leaderboard.html">Leaderboard</a>
+  <a href="quiz.html">Eco Quiz</a>
+  <a href="Uesr-page.html">User Page</a>
+  <a href="resources.html">Resources</a>
+  <a href="about-us.html">About</a>
+</nav>
+
+  <h1>User Dashboard</h1>
+
+  <h2>User Information</h2>
+  <p><strong>Name:</strong> Hero</p>
+  <p id="ecoPoints"><strong>Eco Points:</strong> 0</p>
+  <p id="level">Level: 0 | Next level at 1600 pts</p>
+
+  <h2>Your Challenges</h2>
+  <button id="toggleChallenges">Toggle Challenges</button>
+  <ul id="challengesList">
+    <li class="challenge-item" data-points="100">Recycle Week — +100 pts</li>
+    <li class="challenge-item" data-points="80">Bike to Work — +80 pts</li>
+  </ul>
+
+  <h2>Quick Links</h2>
+  <ul>
+    <li><a href="Eco-Challenges.html">Start a Challenge</a></li>
+    <li><a href="Eco-Events.html">View Events</a></li>
+  </ul>
+
+  <script>
+    const toggleChallengesBtn = document.getElementById("toggleChallenges");
+    const challengesList = document.getElementById("challengesList");
+    const ecoPointsDisplay = document.getElementById("ecoPoints");
+    const levelDisplay = document.getElementById("level");
+
+    let ecoPoints = 0;
+    let level = 0;
+    const nextLevelPoints = 1600;
+
+    toggleChallengesBtn.addEventListener("click", () => {
+      challengesList.style.display = challengesList.style.display === "none" ? "block" : "none";
+    });
+
+    const challengeItems = document.querySelectorAll(".challenge-item");
+
+    challengeItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const points = parseInt(item.dataset.points);
+        ecoPoints += points;
+        ecoPointsDisplay.textContent = `Eco Points: ${ecoPoints}`;
+
+        level = Math.floor(ecoPoints / nextLevelPoints);
+        levelDisplay.textContent = `Level: ${level} | Next level at ${nextLevelPoints} pts`;
+
+        item.style.textDecoration = "line-through";
+        item.style.opacity = "0.6";
+        item.style.pointerEvents = "none";
+      });
+    });
+  </script>
+</body>
+</html>
