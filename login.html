@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>EcoCampus Hub | Login</title>
+</head>
+<body>
+  <!-- NEW HEADER DESIGN -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Logo Section -->
+      <div class="logo-section">
+        <div class="logo-main">
+          <a href="home.html" class="logo-large">
+            EcoCampus
+            <span>Hub</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Main Navigation -->
+      <div class="nav-main">
+        <nav aria-label="Main Navigation">
+          <a href="home.html">Home</a>
+          <a href="EcoCampusHub_P9.html">Profile</a>
+          <a href="Eco-Challenges.html">Eco Challenges</a>
+          <a href="event.html">Event</a>
+          <a href="leaderboard.html">Leaderboard</a>
+          <a href="quiz.html">Eco Quiz</a>
+          <a href="Uesr-page.html">User Page</a>
+          <a href="resources.html">Resources</a>
+          <a href="about-us.html">About</a>
+        </nav>
+      </div>
+    </div>
+    
+    <!-- Daily Tip (for home page only) -->
+    <div class="daily-tip" id="dailyTip">
+      Daily Tip: Use a reusable water bottle instead of plastic.
+    </div>
+  </header>
+
+  <main class="login-main">
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-header">
+          <h1>Welcome Back!</h1>
+          <p>Sign in to continue your eco-journey</p>
+        </div>
+
+        <form class="login-form" id="loginForm">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder="Enter your email"
+              required
+            >
+            <span class="error-message" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              placeholder="Enter your password"
+              required
+            >
+            <span class="error-message" id="passwordError"></span>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox">
+              <input type="checkbox" id="rememberMe">
+              <span class="checkmark"></span>
+              Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary login-btn">Sign In</button>
+        </form>
+
+        <div class="login-footer">
+          <p>Don't have an account? <a href="EcoCampusHub_R3.html" class="signup-link">Sign up here</a></p>
+        </div>
+
+    
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> EcoCampus Hub. Encouraging sustainability within campus life.</p>
+    </div>
+  </footer>
+<script src="App.js"></script>
+</body>
+</html>
