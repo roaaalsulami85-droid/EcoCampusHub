@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>EcoCampus Hub | Home</title>
+</head>
+<body>
+  <!-- NEW HEADER DESIGN -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Logo Section -->
+      <div class="logo-section">
+        <div class="logo-main">
+          <a href="home.html" class="logo-large">
+            EcoCampus
+            <span>Hub</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Main Navigation -->
+      <div class="nav-main">
+        <nav aria-label="Main Navigation">
+          <a href="home.html">Home</a>
+          <a href="EcoCampusHub_P9.html">Profile</a>
+          <a href="Eco-Challenges.html">Eco Challenges</a>
+          <a href="event.html">Event</a>
+          <a href="leaderboard.html">Leaderboard</a>
+          <a href="quiz.html">Eco Quiz</a>
+          <a href="Uesr-page.html">User Page</a>
+          <a href="resources.html">Resources</a>
+          <a href="about-us.html">About</a>
+        </nav>
+      </div>
+    </div>
+    
+    <!-- Daily Tip (for home page only) -->
+    <div class="daily-tip" id="dailyTip">
+      Daily Tip: Use a reusable water bottle instead of plastic.
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h1>Make Your Campus Greener.</h1>
+          <p>
+            EcoCampus Hub inspires students to take real sustainable actions,
+            earn points, badges, and climb the leaderboard while making a
+            positive impact on the environment.
+          </p>
+          <div class="hero-buttons">
+            <a href="login.html" class="btn btn-primary">Get Started</a>
+            <a href="#challenges" class="link">View Challenges</a>
+          </div>
+          <ul class="hero-stats">
+            <li><strong>1,245</strong> Students</li>
+            <li><strong>32</strong> Active Challenges</li>
+            <li><strong>8</strong> Upcoming Events</li>
+          </ul>
+        </div>
+        <div class="hero-image">
+          <div class="highlight-card">
+            <h3>Challenge of the Week</h3>
+            <p>Use a reusable cup every day for one week.</p>
+            <span class="points">+50 pts</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED CHALLENGES -->
+    <section id="challenges" class="section container">
+      <div class="section-header">
+        <h2>Featured Challenges</h2>
+        <select id="challengeFilter">
+          <option value="all">All</option>
+          <option value="recycling">Recycling</option>
+          <option value="energy">Energy Saving</option>
+          <option value="water">Water Saving</option>
+        </select>
+      </div>
+
+      <div class="carousel" id="challengeCarousel">
+        <button class="carousel-btn prev" id="prevBtn">‹</button>
+        <div class="carousel-track" id="carouselTrack"></div>
+        <button class="carousel-btn next" id="nextBtn">›</button>
+      </div>
+    </section>
+
+    <!-- TOP STUDENTS -->
+    <section class="section pale">
+      <div class="container">
+        <div class="section-header">
+          <h2>Top Eco Students</h2>
+          <p class="muted">This Month's Leaders</p>
+        </div>
+        <div class="top-grid" id="topGrid"></div>
+      </div>
+    </section>
+
+    <!-- UPCOMING EVENTS -->
+    <section class="section container">
+      <div class="section-header">
+        <h2>Upcoming Events</h2>
+        <a href="event.html" class="link">See All</a>
+      </div>
+      <div class="events-list" id="eventsList"></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> EcoCampus Hub. Encouraging sustainability within campus life.</p>
+    </div>
+  </footer>
+<script src="App.js"></script>
+</body>
+</html>
