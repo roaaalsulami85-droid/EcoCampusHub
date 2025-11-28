@@ -1186,7 +1186,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initLeaderboardFilters();
   setupPagination(); 
 });
-/*End JS of resorses page by Aryam*/
+/*End JS of Leaderboard page by Aryam*/
+
 
 
 
