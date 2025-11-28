@@ -426,7 +426,26 @@ function initChallengesPage() {
     });
 }
 
-// ===============================
+// // بعدين اشوفه رؤى
+//const joinButtons = document.querySelectorAll('.challenge button');
+
+//joinButtons.forEach(button => {
+//  button.addEventListener('click', () => {
+   
+   // const challengeName = button.parentElement.querySelector('h3').innerText;
+   
+  //  const points = button.parentElement.querySelector('.points').innerText;
+
+  
+   // alert(`You have joined "${challengeName}" and earned ${points}!`);
+
+
+  //  button.disabled = true;
+  //  button.innerText = "Joined";
+//});
+//});
+
+//===============================
 // QUIZ PAGE FUNCTIONALITY
 // ===============================
 
@@ -647,3 +666,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
