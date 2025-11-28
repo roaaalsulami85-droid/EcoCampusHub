@@ -887,10 +887,118 @@ aside {
 /* ===============================
    USER PAGE STYLES
    =============================== */
-hr {
+body {
+  background: linear-gradient(180deg, #fff, var(--beige));
+  margin: 0;
+  font-family: inherit;
+}
+
+/* Hero-like section for welcome & points */
+.user-hero {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+
+.user-hero h1 {
+  color: var(--green-dark);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.user-hero h2 {
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+
+.user-hero p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* Challenges section */
+#challengesList {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+#challengesList li {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#challengesList li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+  color: var(--green-dark);
+}
+
+/* Buttons like Home Page */
+.btn-primary,
+.btn-outline {
+  border-radius: var(--radius);
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--green-dark);
+  color: white;
   border: none;
-  border-top: 1px solid #eee;
-  margin: 1.5rem 0;
+}
+
+.btn-primary:hover {
+  background: var(--green);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--green-dark);
+  color: var(--green-dark);
+}
+
+.btn-outline:hover {
+  background: var(--green-dark);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Quick links cards (optional) */
+.quick-links a {
+  display: inline-block;
+  margin: 0.5rem 0;
+}
+
+/* Container spacing */
+main.container {
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+/* Responsive tweaks like Home Page */
+@media (max-width: 768px) {
+  .user-hero h1 {
+    font-size: 1.7rem;
+  }
+  .user-hero h2 {
+    font-size: 1.3rem;
+  }
+  #challengesList li {
+    padding: 0.8rem;
+  }
 }
 
 
@@ -1521,3 +1629,4 @@ footer,
   padding: 1.6rem;
   margin-top: 3rem;
 }
+
