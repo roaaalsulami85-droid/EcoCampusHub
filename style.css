@@ -740,6 +740,27 @@ form[role="search"] select:focus {
   text-decoration: underline;
 }
 
+.challenge button {
+  background-color: var(--green); 
+  color: white; 
+  border: none; 
+  padding: 0.5rem 1rem; 
+  border-radius: 0.5rem; 
+  cursor: pointer; 
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s; 
+}
+
+.challenge button:hover {
+  background-color: var(--green-dark);
+  transform: scale(1.05);
+}
+
+.challenge button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
 /* ===============================
    LEADERBOARD STYLES
    =============================== */
@@ -1771,6 +1792,7 @@ footer,
   font-size: 1.4rem;
   line-height: 1;
 }
+
 
 
 
