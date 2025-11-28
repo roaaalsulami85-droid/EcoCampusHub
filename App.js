@@ -879,4 +879,315 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+/* JS for Resorses page by Aryam*/
+document.addEventListener("DOMContentLoaded", () => {
+  /* update year of footer */
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+
+  /* Daily Tip random */
+  const tips = [
+    "Use a reusable water bottle instead of plastic.",
+    "Turn off lights when you leave the room.",
+    "Sort your waste correctly.",
+    "Bring your own cup to campus cafés.",
+    "Take shorter showers to save water.",
+    "Use natural light instead of lamps.",
+    "Unplug chargers when not in use.",
+    "Use reusable bags instead of plastic.",
+    "Recycle paper and plastic properly."
+  ];
+
+  const tipEl = document.getElementById("dailyTip");
+  if (tipEl && tips.length > 0) {
+    const randomTip = tips[Math.floor(Math.random() * tips.length)];
+    tipEl.textContent = "Daily Tip: " + randomTip;
+  }
+
+  /* Resources sarech of footer */
+
+  const searchForm = document.querySelector("main form[role='search']");
+  if (!searchForm) return; 
+
+  const searchInput = searchForm.querySelector("input[name='q']");
+  const categorySelect = searchForm.querySelector("select[name='category']");
+
+  const articleSection = document.querySelector(
+    "section[aria-labelledby='articles-title']"
+  );
+  const videoSection = document.querySelector(
+    "section[aria-labelledby='videos-title']"
+  );
+  const downloadsSection = document.querySelector(
+    "section[aria-labelledby='downloads-title']"
+  );
+
+  const articleCards = articleSection
+    ? Array.from(articleSection.querySelectorAll("article"))
+    : [];
+  const videoCards = videoSection
+    ? Array.from(videoSection.querySelectorAll("figure"))
+    : [];
+  const downloadItems = downloadsSection
+    ? Array.from(downloadsSection.querySelectorAll("li"))
+    : [];
+
+  const allItems = [...articleCards, ...videoCards, ...downloadItems];
+
+  // Articale
+  if (articleCards[0]) articleCards[0].dataset.category = "energy";     // 7 Ways to Bring Down Energy...
+  if (articleCards[1]) articleCards[1].dataset.category = "recycling";  // Recycling 101
+  if (articleCards[2]) articleCards[2].dataset.category = "recycling";  // Reusable Habits (نعتبرها Recycling)
+
+  // Viedios
+  if (videoCards[0]) videoCards[0].dataset.category = "events";        // Campus Sustainability Tour
+  if (videoCards[1]) videoCards[1].dataset.category = "recycling";     // How to Sort Recycling Properly
+
+  // Downlode File
+  if (downloadItems[0]) downloadItems[0].dataset.category = "energy";   // Energy-Efficiency Checklist
+  if (downloadItems[1]) downloadItems[1].dataset.category = "recycling";// Campus Recycling Map
+  if (downloadItems[2]) downloadItems[2].dataset.category = "water";    // Water Conservation Tips
+
+  function filterResources() {
+    const term = (searchInput.value || "").trim().toLowerCase();
+    const category = (categorySelect.value || "").trim().toLowerCase();
+
+    allItems.forEach((el) => {
+      const text = el.textContent.toLowerCase();
+      const itemCategory = (el.dataset.category || "").toLowerCase();
+
+    // Smart search: detect keywords like video / article / download
+    let matchTerm = false;
+
+    // 1) If search box empty → match everything
+    if (!term) {
+      matchTerm = true;
+    }
+
+    // 2) Normal text match
+   else if (text.includes(term)) {
+         matchTerm = true;
+    }
+
+    // 3) Keyword → show videos
+    else if (term === "video" || term === "videos") {
+       matchTerm = el.tagName.toLowerCase() === "figure"; 
+    }
+
+    // 4) Keyword → show articles
+    else if (term === "article" || term === "articles" || term === "artical") {
+         matchTerm = el.tagName.toLowerCase() === "article";
+    }
+
+    // 5) Keyword → show downloads
+    else if (term === "download" || term === "guide" || term === "pdf") {
+          matchTerm = el.tagName.toLowerCase() === "li";
+    }
+      const matchCategory = !category || itemCategory === category;
+
+      if (matchTerm && matchCategory) {
+        el.style.display = "";
+        el.classList.add("filtered-result");
+      } else {
+        el.style.display = "none";
+        el.classList.remove("filtered-result");
+      }
+    });
+  }
+
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    filterResources();
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener("input", filterResources);
+  }
+
+  if (categorySelect) {
+    categorySelect.addEventListener("change", filterResources);
+  }
+});
+/*End JS of resorses page by Aryam*/
+
+// JS for Leaderboard by Aryam
+document.addEventListener("DOMContentLoaded", () => {
+  updateYear();
+  setupDailyTip();
+  initLeaderboardFilters();
+});
+
+/* Footer year*/
+function updateYear() {
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+}
+
+/* Daily Tip */
+function setupDailyTip() {
+  const tips = [
+    "Use a reusable water bottle instead of plastic.",
+    "Turn off lights when you leave the room.",
+    "Sort your waste correctly.",
+    "Bring your own cup to campus cafés.",
+    "Take shorter showers to save water.",
+    "Use natural light instead of lamps.",
+    "Unplug chargers when not in use.",
+    "Use reusable bags instead of plastic.",
+    "Recycle paper and plastic properly."
+  ];
+
+  const tipEl = document.getElementById("dailyTip");
+  if (tipEl && tips.length > 0) {
+    const randomTip = tips[Math.floor(Math.random() * tips.length)];
+    tipEl.textContent = "Daily Tip: " + randomTip;
+  }
+}
+
+/* Leaderboard filters (Department + Time Range) */
+function initLeaderboardFilters() {
+  const table = document.querySelector(".leaderboard-table");
+  const filterForm = document.querySelector(".filter-form");
+  if (!table || !filterForm) return; 
+
+  const deptSelect = document.getElementById("dept");
+  const rangeSelect = document.getElementById("range");
+  const boardTitle = document.getElementById("board-title");
+  const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+  const rowData = rows.map((row, index) => {
+    const cells = row.querySelectorAll("td");
+    const dept = cells[2]?.textContent.trim(); 
+
+   
+    let ranges = "all";
+    if (index === 0) ranges = "all,month,week";      
+    else if (index === 1) ranges = "all,month,week"; 
+    else if (index === 2) ranges = "all,month";      
+    else if (index === 3) ranges = "all,week";       
+    else if (index === 4) ranges = "all,week";      
+
+    row.dataset.dept = dept;
+    row.dataset.ranges = ranges;
+
+    return { row, dept, ranges };
+  });
+
+  function applyLeaderboardFilters(e) {
+    if (e) e.preventDefault();
+
+    const selectedDept = (deptSelect?.value || "").trim();  
+    const selectedRange = (rangeSelect?.value || "all").trim(); 
+
+    rowData.forEach(({ row, dept, ranges }) => {
+      const deptMatch = !selectedDept || dept === selectedDept;
+      const rangeList = ranges.split(","); // ["all","month",...]
+      const rangeMatch = selectedRange === "all" || rangeList.includes(selectedRange);
+
+      if (deptMatch && rangeMatch) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+
+    if (boardTitle) {
+      if (selectedRange === "month") {
+        boardTitle.textContent = "This Month's Rankings";
+      } else if (selectedRange === "week") {
+        boardTitle.textContent = "This Week's Rankings";
+      } else {
+        boardTitle.textContent = "All-time Rankings";
+      }
+    }
+  }
+
+  filterForm.addEventListener("submit", applyLeaderboardFilters);
+  if (deptSelect) deptSelect.addEventListener("change", applyLeaderboardFilters);
+  if (rangeSelect) rangeSelect.addEventListener("change", applyLeaderboardFilters);
+}
+
+function setupPagination() {
+  const table = document.querySelector(".leaderboard-table");
+  const pagination = document.querySelector(".pagination");
+
+  if (!table || !pagination) return;
+
+  const rows = Array.from(table.querySelectorAll("tbody tr"));
+  const totalPages = 5;
+  const rowsPerPage = Math.ceil(rows.length / totalPages);
+
+  let currentPage = 1;
+
+  pagination.innerHTML = `
+    <button class="prev">« Prev</button>
+    <button class="page-num" data-page="1">1</button>
+    <button class="page-num" data-page="2">2</button>
+    <button class="page-num" data-page="3">3</button>
+    <button class="page-num" data-page="4">4</button>
+    <button class="page-num" data-page="5">5</button>
+    <button class="next">Next »</button>
+  `;
+
+  const prevBtn = pagination.querySelector(".prev");
+  const nextBtn = pagination.querySelector(".next");
+  const pageButtons = pagination.querySelectorAll(".page-num");
+
+  function showPage(page) {
+    currentPage = page;
+
+    rows.forEach((row) => (row.style.display = "none"));
+
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+
+    rows.slice(start, end).forEach((row) => {
+      row.style.display = "";
+    });
+
+    updateButtons();
+  }
+
+  function updateButtons() {
+    pageButtons.forEach((btn) => {
+      const num = Number(btn.dataset.page);
+      btn.classList.toggle("active-page", num === currentPage);
+    });
+
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+  }
+
+  pageButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const num = Number(btn.dataset.page);
+      if (num !== currentPage) showPage(num);
+    });
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) showPage(currentPage - 1);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < totalPages) showPage(currentPage + 1);
+  });
+
+  showPage(1);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateYear();
+  setupDailyTip();
+  initLeaderboardFilters();
+  setupPagination(); 
+});
+/*End JS of resorses page by Aryam*/
+
+
+
 
