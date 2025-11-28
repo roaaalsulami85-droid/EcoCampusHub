@@ -893,35 +893,52 @@ hr {
   margin: 1.5rem 0;
 }
 
+
 /* ===============================
-   FOOTER
+   FOOTER STYLES
    =============================== */
 .footer {
   background: var(--green-dark);
   color: #fff;
   text-align: center;
-  padding: 1.5rem 1rem;
-  margin-top: 2rem;
-}
-
-.footer a {
-  color: #fff;
-  margin: 0 0.5rem;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  text-decoration: underline;
+  padding: 2rem 1rem;
+  margin-top: 4rem;
 }
 
 .footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
+.footer-content p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 1rem;
+    margin-top: 3rem;
+  }
+  
+  .footer-content p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 1rem;
+  }
+  
+  .footer-content p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+}
 /* ===============================
    ENHANCED STYLES FOR BETTER LAYOUT
    =============================== */
