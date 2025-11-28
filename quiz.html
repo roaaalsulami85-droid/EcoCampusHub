@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <title>Eco Quiz — EcoCampus Hub</title>
+  
+</head>
+<body>
+  <!-- NEW HEADER DESIGN -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Logo Section -->
+      <div class="logo-section">
+        <div class="logo-main">
+          <a href="home.html" class="logo-large">
+            EcoCampus
+            <span>Hub</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Main Navigation -->
+      <div class="nav-main">
+        <nav aria-label="Main Navigation">
+          <a href="home.html">Home</a>
+          <a href="EcoCampusHub_P9.html">Profile</a>
+          <a href="Eco-Challenges.html">Eco Challenges</a>
+          <a href="event.html">Event</a>
+          <a href="leaderboard.html">Leaderboard</a>
+          <a href="quiz.html">Eco Quiz</a>
+          <a href="Uesr-page.html">User Page</a>
+          <a href="resources.html">Resources</a>
+          <a href="about-us.html">About</a>
+        </nav>
+      </div>
+    </div>
+    
+    <!-- Daily Tip (for home page only) -->
+    <div class="daily-tip" id="dailyTip">
+      Daily Tip: Use a reusable water bottle instead of plastic.
+    </div>
+  </header>
+
+    <!-- ===== Main Content ===== -->
+    <main style="margin-top: 18px; max-width: 700px">
+      <div class="card">
+        <h1>Eco Quiz</h1>
+
+        <!-- Quiz Form -->
+        <form id="quizForm" class="login-form">
+          <!-- Question 1 -->
+         <fieldset>
+
+          <legend>Quick Quiz</legend> 
+          <div class="form-group quiz-question">
+            <div>1) Which habit best helps reduce plastic waste?</div>
+            <label class="checkbox">
+              <input type="radio" name="q1" value="a" />
+              <span class="checkmark"></span>
+              Using reusable bags
+            </label>
+            <label class="checkbox">
+              <input type="radio" name="q1" value="b" />
+              <span class="checkmark"></span>
+              Buying bottled water daily
+            </label>
+          </div>
+          <br>
+          <!-- Question 2 -->
+          <div class="form-group quiz-question">
+            <div>2) What's the best way to save power in computer labs?</div>
+            <label class="checkbox">
+              <input type="radio" name="q2" value="a" />
+              <span class="checkmark"></span>
+              Turn off monitors after use
+            </label>
+            <label class="checkbox">
+              <input type="radio" name="q2" value="b" />
+              <span class="checkmark"></span>
+              Keep screens on all day
+            </label>
+          </div>
+          <br>
+          <!-- Question 3 -->
+          <div class="form-group quiz-question">
+            <div>3) Which event promotes campus sustainability?</div>
+            <label class="checkbox">
+              <input type="radio" name="q3" value="a" />
+              <span class="checkmark"></span>
+              Green Fair
+            </label>
+            <label class="checkbox">
+              <input type="radio" name="q3" value="b" />
+              <span class="checkmark"></span>
+              Gaming Marathon
+            </label>
+          </div>
+          <br>
+          <!-- Submit Button -->
+          <button class="btn btn-primary" type="button" >Submit</button>
+          
+         </fieldset>
+        </form>
+      </div>
+      <p>Complete quizzes to earn extra Eco Points!</p>
+    </main>
+
+    <!-- ===== Footer Section ===== -->
+    <footer class="footer">
+      <div class="footer-inner">
+      <p>© <span id="year"></span> EcoCampus Hub. Encouraging sustainability within campus life.</p>
+      </div>
+    </footer>
+  </div>
+<script src="App.js"></script>
+</body>
+</html>
