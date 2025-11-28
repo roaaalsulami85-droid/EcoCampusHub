@@ -451,47 +451,259 @@ function initChallengesPage() {
 
 function initQuizPage() {
     const quizForm = document.getElementById('quizForm');
-    const submitButton = quizForm?.querySelector('button[type="button"]');
-    
-    if (!submitButton) return;
 
-    submitButton.addEventListener('click', function() {
-        const answers = {
-            q1: document.querySelector('input[name="q1"]:checked')?.value,
-            q2: document.querySelector('input[name="q2"]:checked')?.value,
-            q3: document.querySelector('input[name="q3"]:checked')?.value
-        };
+    // === Bank of Questions ===
+    let questionBank = [
 
-        // Check if all questions are answered
-        if (!answers.q1 || !answers.q2 || !answers.q3) {
-            alert('Please answer all questions before submitting!');
+    // === Multiple Choice Questions (10) ===
+    {
+        question: "Which habit best helps reduce plastic waste?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "Using reusable bags" },
+            { value: "b", text: "Buying bottled water daily" }
+        ],
+        correct: "a"
+    },
+    {
+        question: "Which energy source is renewable?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "Solar power" },
+            { value: "b", text: "Coal" }
+        ],
+        correct: "a"
+    },
+    {
+        question: "What gas mainly contributes to global warming?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "CO₂" },
+            { value: "b", text: "Oxygen" }
+        ],
+        correct: "a"
+    },
+    {
+        question: "What is the best way to save power in computer labs?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "Turn off monitors after use" },
+            { value: "b", text: "Keep screens on all day" }
+        ],
+        correct: "a"
+    },
+    {
+        question: "Which event promotes campus sustainability?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "Green Fair" },
+            { value: "b", text: "Gaming Marathon" }
+        ],
+        correct: "a"
+    },
+    {
+        question: "Which of the following is recyclable?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "Plastic bottles" },
+            { value: "b", text: "Used tissues" }
+        ],
+        correct: "a"
+    },
+    {
+        question: "Which action reduces water waste?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "Fixing leaking taps" },
+            { value: "b", text: "Letting water run while brushing" }
+        ],
+        correct: "a"
+    },
+    {
+        question: "Which transport method reduces carbon footprint?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "Walking or cycling" },
+            { value: "b", text: "Driving alone" }
+        ],
+        correct: "a"
+    },
+    {
+        question: "Which bin should paper waste go into?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "Blue recycling bin" },
+            { value: "b", text: "General trash bin" }
+        ],
+        correct: "a"
+    },
+    {
+        question: "Which is an example of e-waste?",
+        type: "mcq",
+        options: [
+            { value: "a", text: "Old mobile phone" },
+            { value: "b", text: "Banana peel" }
+        ],
+        correct: "a"
+    },
+
+    // === TRUE / FALSE Questions (10) ===
+    {
+        question: "Recycling helps reduce pollution.",
+        type: "tf",
+        correct: "true"
+    },
+    {
+        question: "Fossil fuels are renewable energy sources.",
+        type: "tf",
+        correct: "false"
+    },
+    {
+        question: "Turning off lights saves electricity.",
+        type: "tf",
+        correct: "true"
+    },
+    {
+        question: "Plastic takes only 1 year to decompose.",
+        type: "tf",
+        correct: "false"
+    },
+    {
+        question: "Trees absorb CO₂ and release oxygen.",
+        type: "tf",
+        correct: "true"
+    },
+    {
+        question: "Solar energy is harmful to the environment.",
+        type: "tf",
+        correct: "false"
+    },
+    {
+        question: "Reusing items helps reduce waste.",
+        type: "tf",
+        correct: "true"
+    },
+    {
+        question: "Leaving devices charging overnight saves energy.",
+        type: "tf",
+        correct: "false"
+    },
+    {
+        question: "Composting food scraps reduces landfill waste.",
+        type: "tf",
+        correct: "true"
+    },
+    {
+        question: "Carpooling increases carbon emissions.",
+        type: "tf",
+        correct: "false"
+    }
+];
+
+
+    // Shuffle function
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    // Get random X questions
+    function getRandomQuestions(count) {
+        let temp = [...questionBank];
+        shuffle(temp);
+        return temp.slice(0, count);
+    }
+
+    let selectedQuestions = [];
+
+    // Render quiz dynamically
+function renderQuiz() {
+    selectedQuestions = getRandomQuestions(3);
+
+    let html = `<fieldset><legend>Quick Quiz</legend>`;
+
+    selectedQuestions.forEach((q, index) => {
+
+        html += `<div class="form-group quiz-question">
+                    <div>${index + 1}) ${q.question}</div>`;
+
+        // ========== MCQ ==========
+        if (q.type === "mcq") {
+            shuffle(q.options);
+
+            q.options.forEach(opt => {
+                html += `
+                    <label class="checkbox">
+                        <input type="radio" name="q${index}" value="${opt.value}">
+                        <span class="checkmark"></span>
+                        ${opt.text}
+                    </label>
+                `;
+            });
+        }
+
+        // ========== TRUE / FALSE ==========
+        else if (q.type === "tf") {
+            html += `
+                <label class="checkbox">
+                    <input type="radio" name="q${index}" value="true">
+                    <span class="checkmark"></span> True
+                </label>
+
+                <label class="checkbox">
+                    <input type="radio" name="q${index}" value="false">
+                    <span class="checkmark"></span> False
+                </label>
+            `;
+        }
+
+        html += `</div><br>`;
+    });
+
+    html += `<button class="btn btn-primary" type="button" id="submitBtn">Submit</button></fieldset>`;
+
+    quizForm.innerHTML = html;
+
+    document.getElementById("submitBtn").addEventListener("click", calculateScore);
+}
+
+
+    // Calculate score
+    function calculateScore() {
+        let score = 0;
+        let allAnswered = true;
+
+        selectedQuestions.forEach((q, i) => {
+            let answer = document.querySelector(`input[name="q${i}"]:checked`);
+            if (!answer) allAnswered = false;
+            if (answer?.value === q.correct) score++;
+        });
+
+        if (!allAnswered) {
+            alert("Please answer all questions before submitting!");
             return;
         }
 
-        // Correct answers
-        const correctAnswers = { q1: 'a', q2: 'a', q3: 'a' };
-        
-        // Calculate score
-        let score = 0;
-        if (answers.q1 === correctAnswers.q1) score++;
-        if (answers.q2 === correctAnswers.q2) score++;
-        if (answers.q3 === correctAnswers.q3) score++;
-
-        // Update user points
-        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        // Points system
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        let pointsEarned = score * 10;
 
         if (isLoggedIn) {
-            const pointsEarned = score * 10; // 10 points per correct answer
+            let userData = JSON.parse(localStorage.getItem("userData") || "{}");
             userData.points = (userData.points || 0) + pointsEarned;
-            localStorage.setItem('userData', JSON.stringify(userData));
+            localStorage.setItem("userData", JSON.stringify(userData));
         }
 
-        // Show results
-        alert(`You scored ${score}/3! ${score > 1 ? 'Great job!' : 'Keep learning!'}${isLoggedIn ? `\nEarned ${pointsEarned} points!` : ''}`);
-    });
-}
+        alert(`You scored ${score}/3! ${isLoggedIn ? `\nEarned ${pointsEarned} points!` : ""}`);
 
+        // Reload quiz with new random questions
+        renderQuiz();
+    }
+
+    renderQuiz();
+}
 // ===============================
 // LEADERBOARD PAGE FUNCTIONALITY
 // ===============================
@@ -666,4 +878,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
 
