@@ -744,8 +744,7 @@ function initLeaderboardPage() {
 // ===============================
 
 function initEventsPage() {
-    const registerButtons = document.querySelectorAll('.event-item .btn-primary');
-    
+const registerButtons = document.querySelectorAll('.event-card .btn-primary');
     registerButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
@@ -878,5 +877,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
 
 
