@@ -1772,16 +1772,6 @@ footer,
   line-height: 1;
 }
 
-/* ===============
-    FOOTER 
-   =============== */
 
-footer,
-.footer {
-  background: var(--green-dark);
-  color: #fff;
-  text-align: center;
-  padding: 1.6rem;
-  margin-top: 3rem;
-}
+
 
