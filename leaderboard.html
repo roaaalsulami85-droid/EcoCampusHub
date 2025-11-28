@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>EcoCampus Hub - Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- NEW HEADER DESIGN -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Logo Section -->
+      <div class="logo-section">
+        <div class="logo-main">
+          <a href="home.html" class="logo-large">
+            EcoCampus
+            <span>Hub</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Main Navigation -->
+      <div class="nav-main">
+        <nav aria-label="Main Navigation">
+          <a href="home.html">Home</a>
+          <a href="EcoCampusHub_P9.html">Profile</a>
+          <a href="Eco-Challenges.html">Eco Challenges</a>
+          <a href="event.html">Event</a>
+          <a href="leaderboard.html">Leaderboard</a>
+          <a href="quiz.html">Eco Quiz</a>
+          <a href="Uesr-page.html">User Page</a>
+          <a href="resources.html">Resources</a>
+          <a href="about-us.html">About</a>
+        </nav>
+      </div>
+    </div>
+    
+    <!-- Daily Tip (for home page only) -->
+    <div class="daily-tip" id="dailyTip">
+      Daily Tip: Use a reusable water bottle instead of plastic.
+    </div>
+  </header>
+    <main>
+      <h1>Leaderboard</h1>
+      <p>Top students ranked by total eco points</p>
+
+   <section aria-labelledby="filters-title" class="leaderboard-filters">
+  <h3 id="filters-title">Filters</h3>
+  <form class="filter-form">
+    <div class="filter-group">
+      <label for="dept">Department:</label>
+      <select id="dept" name="dept">
+        <option value="">All</option>
+        <option value="CS">Computer Science</option>
+        <option value="ENG">Engineering</option>
+        <option value="BUS">Business</option>
+        <option value="ENV">Environmental Science</option>
+        <option value="MED">Medical & Health</option>
+        <option value="DES">Design & Media</option>
+        <option value="IT">Information Technology</option>
+        <option value="AI">Artificial Intelligence</option>
+        <option value="ARCH">Architecture</option>
+        <option value="LAW">Law & Legal Studies</option>
+        <option value="EDU">Education</option>
+        <option value="MKT">Marketing</option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label for="range">Time Range:</label>
+      <select id="range" name="range">
+        <option value="all">All-Time</option>
+        <option value="month">This month</option>
+        <option value="week">This week</option>
+      </select>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Apply Filters</button>
+  </form>
+</section>
+
+
+      <section aria-labelledby="board-title">
+        <h3 id="board-title">All-time Rankings</h3>
+        
+        <div class="leaderboard-container">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Student</th>
+                <th scope="col">Department</th>
+                <th scope="col">Badges</th>
+                <th scope="col">Eco Points</th>
+                <th scope="col">Completed Challenges</th>
+              </tr>
+            </thead>
+            <tbody>
+  <!-- Top 3 -->
+  <tr class="rank-1">
+    <td>1 🥇</td>
+    <td>Tala Mohandis</td>
+    <td>CS</td>
+    <td class="badges">♻️ 🌱 ⚡</td>
+    <td>2,340</td>
+    <td>28</td>
+  </tr>
+
+  <tr class="rank-2">
+    <td>2 🥈</td>
+    <td>Sawsan Omar</td>
+    <td>ENG</td>
+    <td class="badges">🌱 ⚡</td>
+    <td>2,210</td>
+    <td>26</td>
+  </tr>
+
+  <tr class="rank-3">
+    <td>3 🥉</td>
+    <td>Roaa Al-Sulami</td>
+    <td>BUS</td>
+    <td class="badges">♻️ 🌱</td>
+    <td>1,980</td>
+    <td>22</td>
+  </tr>
+
+  <!-- Existing + new students -->
+  <tr>
+    <td>4</td>
+    <td>Lamar Alharbi</td>
+    <td>CS</td>
+    <td class="badges">♻️</td>
+    <td>1,760</td>
+    <td>19</td>
+  </tr>
+
+  <tr>
+    <td>5</td>
+    <td>Aryam Fadel</td>
+    <td>ENG</td>
+    <td class="badges">🌱</td>
+    <td>1,640</td>
+    <td>17</td>
+  </tr>
+
+  <tr>
+    <td>6</td>
+    <td>Nour Al-Harbi</td>
+    <td>BUS</td>
+    <td class="badges">♻️ 🌱</td>
+    <td>1,520</td>
+    <td>16</td>
+  </tr>
+
+  <tr>
+    <td>7</td>
+    <td>Hanan Al-Mutairi</td>
+    <td>CS</td>
+    <td class="badges">⚡</td>
+    <td>1,410</td>
+    <td>15</td>
+  </tr>
+
+  <tr>
+    <td>8</td>
+    <td>Rahaf Al-Otaibi</td>
+    <td>ENG</td>
+    <td class="badges">♻️ 🌱 ⚡</td>
+    <td>1,350</td>
+    <td>14</td>
+  </tr>
+
+  <tr>
+    <td>9</td>
+    <td>Sarah Al-Qahtani</td>
+    <td>BUS</td>
+    <td class="badges">🌱</td>
+    <td>1,280</td>
+    <td>13</td>
+  </tr>
+
+  <tr>
+    <td>10</td>
+    <td>Maha Al-Johani</td>
+    <td>CS</td>
+    <td class="badges">♻️ ⚡</td>
+    <td>1,190</td>
+    <td>11</td>
+  </tr>
+
+  <!-- New departments: ENV, MED, DES -->
+
+  <tr>
+    <td>11</td>
+    <td>Dalal Al-Ghamdi</td>
+    <td>ENV</td>
+    <td class="badges">♻️ 🌱</td>
+    <td>1,120</td>
+    <td>10</td>
+  </tr>
+
+  <tr>
+    <td>12</td>
+    <td>Rema Al-Hazza</td>
+    <td>MED</td>
+    <td class="badges">🌱 ⚡</td>
+    <td>1,060</td>
+    <td>9</td>
+  </tr>
+
+  <tr>
+    <td>13</td>
+    <td>Jood Al-Shehri</td>
+    <td>DES</td>
+    <td class="badges">♻️ 🌱</td>
+    <td>990</td>
+    <td>8</td>
+  </tr>
+
+  <tr>
+    <td>14</td>
+    <td>Latifah Al-Anazi</td>
+    <td>ENV</td>
+    <td class="badges">♻️</td>
+    <td>930</td>
+    <td>7</td>
+  </tr>
+
+  <tr>
+    <td>15</td>
+    <td>Maram Al-Saadi</td>
+    <td>MED</td>
+    <td class="badges">🌱</td>
+    <td>870</td>
+    <td>6</td>
+  </tr>
+
+   <tr>
+    <td>16</td>
+    <td>Rawan Al-Juraifani</td>
+    <td>IT</td>
+    <td class="badges">⚡</td>
+    <td>840</td>
+    <td>6</td>
+  </tr>
+
+  <tr>
+    <td>17</td>
+    <td>Haifa Al-Sharif</td>
+    <td>AI</td>
+    <td class="badges">🌱 ⚡</td>
+    <td>795</td>
+    <td>5</td>
+  </tr>
+
+  <tr>
+    <td>18</td>
+    <td>Shahad Al-Zahrani</td>
+    <td>ARCH</td>
+    <td class="badges">♻️</td>
+    <td>760</td>
+    <td>5</td>
+  </tr>
+
+  <tr>
+    <td>19</td>
+    <td>Alanoud Al-Faisal</td>
+    <td>LAW</td>
+    <td class="badges">🌱</td>
+    <td>740</td>
+    <td>4</td>
+  </tr>
+
+  <tr>
+    <td>20</td>
+    <td>Shorouq Al-Fawwaz</td>
+    <td>EDU</td>
+    <td class="badges">♻️</td>
+    <td>710</td>
+    <td>4</td>
+  </tr>
+
+  <tr>
+    <td>21</td>
+    <td>Fatimah Al-Bishi</td>
+    <td>MKT</td>
+    <td class="badges">🌱</td>
+    <td>690</td>
+    <td>4</td>
+  </tr>
+
+  <tr>
+    <td>22</td>
+    <td>Munira Al-Balawi</td>
+    <td>IT</td>
+    <td class="badges">♻️ ⚡</td>
+    <td>660</td>
+    <td>3</td>
+  </tr>
+
+  <tr>
+    <td>23</td>
+    <td>Layan Al-Nasser</td>
+    <td>AI</td>
+    <td class="badges">🌱 🌱</td>
+    <td>640</td>
+    <td>3</td>
+  </tr>
+
+  <tr>
+    <td>24</td>
+    <td>Sarah Aal Hamad</td>
+    <td>ARCH</td>
+    <td class="badges">⚡</td>
+    <td>610</td>
+    <td>3</td>
+  </tr>
+
+  <tr>
+    <td>25</td>
+    <td>Abeer Al-Rashed</td>
+    <td>MKT</td>
+    <td class="badges">♻️</td>
+    <td>580</td>
+    <td>2</td>
+  </tr>
+</tbody>
+
+          </table>
+        </div>
+
+        <div class="pagination">
+          <button class="prev">« Prev</button>
+          <button class="page-num" data-page="1">1</button>
+          <button class="page-num" data-page="2">2</button>
+          <button class="page-num" data-page="3">3</button>
+          <button class="page-num" data-page="3">4</button>
+          <button class="page-num" data-page="3">5</button>
+          <button class="next">Next »</button>
+        </div>
+
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <p>© <span id="year"></span> EcoCampus Hub. Encouraging sustainability within campus life.</p>
+      </div>
+    </footer>
+  </div>
+  <script src="App.js"></script>
+</body>
+</html>
