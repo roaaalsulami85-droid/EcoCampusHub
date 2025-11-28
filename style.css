@@ -1630,3 +1630,158 @@ footer,
   margin-top: 3rem;
 }
 
+
+
+/* ============================================
+           (register + profile) page
+   ============================================ */
+/* ============================================
+      SHARED CARD  (register + profile)
+   ============================================ */
+
+.register-card,
+.profile-container {
+  width: 100%;
+  max-width: 650px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2.2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  animation: fadeIn 0.5s ease;
+  box-sizing: border-box;
+}
+
+/* ============================================
+    SHARED TITLES + SUBTITLES
+   ============================================ */
+.register-card > h1,
+.profile-container > h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.6rem;
+  background: linear-gradient(90deg, #3d7f4e, #73c481);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.register-card > h1 + p,
+.profile-container > h1 + p {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* ============================================
+    FORM LABELS + INPUTS (REGISTER)
+   ============================================ */
+
+#registerForm label {
+  font-weight: 600;
+  color: var(--green-dark);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+#registerForm input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius);
+  border: 1.5px solid #dcdcdc;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+}
+
+/* ============================================
+    BUTTON  (register + logout)
+   ============================================ */
+
+.register-card .btn-primary,
+.logout-btn {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1.1rem;
+  border-radius: 15px;
+  background: linear-gradient(90deg, #3f8b54, #73c481);
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.register-card .btn-primary:hover,
+.logout-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+/* ============================================
+    PROFILE PAGE 
+   ============================================ */
+
+.profile-info h2 {
+  font-size: 1.3rem;
+  color: var(--green-dark);
+  border-left: 5px solid var(--green);
+  padding-left: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.points-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, #3f8b54, #73c481);
+  padding: 0.45rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.points-badge #ecoPoints {
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Lists */
+.profile-info ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.8rem;
+}
+
+.profile-info li {
+  background: #f7f7f2;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.profile-info li::before {
+  content: none;
+}
+
+.emoji {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+/* ===============
+    FOOTER 
+   =============== */
+
+footer,
+.footer {
+  background: var(--green-dark);
+  color: #fff;
+  text-align: center;
+  padding: 1.6rem;
+  margin-top: 3rem;
+}
+
