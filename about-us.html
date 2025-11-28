@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <title>About / Contact — EcoCampus Hub</title>
+  
+</head>
+
+<body>
+  <!-- NEW HEADER DESIGN -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Logo Section -->
+      <div class="logo-section">
+        <div class="logo-main">
+          <a href="home.html" class="logo-large">
+            EcoCampus
+            <span>Hub</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Main Navigation -->
+      <div class="nav-main">
+        <nav aria-label="Main Navigation">
+          <a href="home.html">Home</a>
+          <a href="EcoCampusHub_P9.html">Profile</a>
+          <a href="Eco-Challenges.html">Eco Challenges</a>
+          <a href="event.html">Event</a>
+          <a href="leaderboard.html">Leaderboard</a>
+          <a href="quiz.html">Eco Quiz</a>
+          <a href="Uesr-page.html">User Page</a>
+          <a href="resources.html">Resources</a>
+          <a href="about-us.html">About</a>
+        </nav>
+      </div>
+    </div>
+    
+    <!-- Daily Tip (for home page only) -->
+    <div class="daily-tip" id="dailyTip">
+      Daily Tip: Use a reusable water bottle instead of plastic.
+    </div>
+  </header>
+
+    <!-- ===== Main Content ===== -->
+    <main style="margin-top: 18px">
+
+      <!-- About Section -->
+      <div class="card">
+        <h1>About EcoCampus Hub</h1>
+        <p>
+          EcoCampus Hub is a university platform that motivates students
+          to adopt sustainable habits by joining challenges, attending eco events,
+          and earning points and badges.
+        </p>
+        <p>
+          Our mission is to create an environmentally responsible campus community
+          through digital engagement.
+        </p>
+      </div>
+
+      <!-- Contact Form Section -->
+      <div class="card" style="margin-top: 12px">
+        <h3>Contact Us</h3>
+        <form action="#" method="post" class="login-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" class="input" name="name" required />
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" class="input" name="email" type="email" required />
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="input" rows="4" required></textarea>
+          </div>
+          
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+      </div>
+    </main>
+
+    <!-- ===== Footer Section ===== -->
+    <footer class="footer">
+      <div class="footer-inner">
+      <p>© <span id="year"></span> EcoCampus Hub. Encouraging sustainability within campus life.</p>
+      </div>
+    </footer>
+
+  </div>
+  <script src="App.js"></script>
+</body>
+</html>
