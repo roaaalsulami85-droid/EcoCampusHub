@@ -76,7 +76,6 @@ body {
   font-weight: 400;
   opacity: 0.9;
 }
-
 /* Main Navigation */
 .nav-main {
   background: var(--beige);
@@ -129,7 +128,7 @@ body {
     justify-content: flex-start;
     padding-bottom: 0.5rem;
   }
-  
+
   .nav-main nav a {
     padding: 0.7rem 1rem;
     font-size: 0.9rem;
@@ -182,20 +181,22 @@ body {
 /* ===============================
    BUTTONS
    =============================== */
-   select {
-  width: 140px;              
+select {
+  width: 140px;
   padding: 8px 32px 8px 12px;
   font-size: 14px;
   border: 1px solid #555;
   border-radius: 6px;
   background-color:#4a9a66;
-  appearance: none;          
+  appearance: none;
   cursor: pointer;
-  position: relative;
   background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='18' viewBox='0 0 20 20' width='18' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,10'/></svg>");
   background-repeat: no-repeat;
   background-position: right 10px center; 
-  form[role="search"] select {
+}
+
+/* override select inside search */
+form[role="search"] select {
   background-color: #fff;
   color: var(--green-dark);
   font-weight: 500;
@@ -205,19 +206,16 @@ body {
   cursor: pointer;
 }
 
-
 form[role="search"] select option {
-  background-color: #fff;        
-  color: var(--green-dark);      
+  background-color: #fff;
+  color: var(--green-dark);
   font-weight: 500;
 }
-
 
 form[role="search"] select:focus {
   outline: none;
   border-color: var(--green-dark);
   box-shadow: 0 0 0 3px rgba(74, 154, 102, 0.2);
-}
 }
 
 .btn {
@@ -789,6 +787,131 @@ tr:hover {
   background: #f9f9f9;
 }
 
+/*This style form here edited by Aryam*/
+/* Filters style*/
+.leaderboard-filters {
+  background: var(--beige);
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* Rank filter style*/
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-end;
+}
+
+/* Group filter style*/
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 210px;
+}
+
+/* Style Department: / Time Range label */
+.filter-group label {
+  font-weight: 600;
+  color: var(--green-dark);
+  font-size: 0.9rem;
+}
+
+.filter-group select {
+  background-color: #fff;
+  color: var(--green-dark);
+  font-weight: 500;
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition);
+}
+
+/* Select option style (inside the menu)*/
+.filter-group select option {
+  background-color: #fff;
+  color: var(--green-dark);
+}
+
+/* Select focus style */
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--green-dark);
+  box-shadow: 0 0 0 3px rgba(47, 122, 74, 0.2);
+}
+
+@media (max-width: 768px) {
+  .filter-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* Prev/Next botton style */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 2rem 0;
+}
+
+.pagination button {
+  background: #fff;
+  color: var(--green-dark);
+  border: 2px solid #d8e3da;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover */
+.pagination button:hover:not(:disabled):not(.active-page) {
+  background: #f3f8f4;
+  border-color: var(--green);
+  color: var(--green-dark);
+}
+
+/* Active page */
+.pagination button.active-page {
+  background: var(--green-dark);
+  color: #fff;
+  border-color: var(--green-dark);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+/* Disabled buttons */
+.pagination button:disabled {
+  background: #f0f0f0;
+  color: #aaaaaa;
+  border-color: #e5e5e5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Hover */
+.pagination button:disabled:hover {
+  background: #f0f0f0;
+  color: #aaaaaa;
+  border-color: #e5e5e5;
+}
+
+/* Responsive styling */
+@media (max-width: 480px) {
+  .pagination button {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+/*End of Aryam edit*/
 /* ===============================
    CARD COMPONENT
    =============================== */
@@ -904,6 +1027,134 @@ aside {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
   border-left: 4px solid var(--green);
 }
+
+/*This style form here edited by Aryam*/
+/* General links */
+#resources-page section {
+  margin-bottom: 3rem;        
+  display: block;             
+  width: 100%;
+}
+
+#resources-page h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 1rem;
+}
+
+#resources-page a {
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+#resources-page a:hover {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+/* Search area */
+#resources-page form[role="search"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+#resources-page form[role="search"] label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+#resources-page form[role="search"] input[type="search"],
+#resources-page form[role="search"] select {
+  padding: 0.7rem 1rem;
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--green-dark);
+  font-size: 1rem;
+  transition: 0.3s;
+}
+#resources-page form[role="search"] input:focus,
+#resources-page form[role="search"] select:focus {
+  outline: none;
+  border-color: var(--green-dark);
+  box-shadow: 0 0 0 3px rgba(63,122,82,0.23);
+}
+
+/* Search button */
+#resources-page form[role="search"] button {
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius);
+  background: var(--green-dark);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+
+#resources-page form[role="search"] button:hover {
+  background: var(--green);
+}
+
+/* Articles */
+#resources-page section[aria-labelledby="articles-title"] article {
+  background: #fff;
+  padding: 1.3rem;
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+#resources-page section[aria-labelledby="articles-title"] h4 {
+  color: var(--green-dark);
+  margin-bottom: 0.4rem;
+}
+
+/* Videos section */
+#resources-page section[aria-labelledby="videos-title"] figure {
+  border: 2px dashed var(--green);
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: #fff;
+  margin: 1rem 0;
+  max-width: 560px;
+}
+
+#resources-page section[aria-labelledby="videos-title"] video {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+#resources-page section[aria-labelledby="videos-title"] figcaption {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 0.6rem;
+}
+
+/* Downloads */
+#resources-page section[aria-labelledby="downloads-title"] ul {
+  padding-left: 1.2rem;
+}
+
+#resources-page section[aria-labelledby="downloads-title"] li {
+  margin-bottom: 0.5rem;
+}
+
+/* Filtered links */
+#resources-page .filtered a {
+  color: #0c4a2c !important;
+  font-weight: 600;
+}
+
+/*End of Aryam edit*/
 
 /* ===============================
    USER PAGE STYLES
@@ -1792,8 +2043,3 @@ footer,
   font-size: 1.4rem;
   line-height: 1;
 }
-
-
-
-
-
