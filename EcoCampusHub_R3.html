@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Register - EcoCampus Hub</title>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+
+      <div class="logo-section">
+        <div class="logo-main">
+          <a href="home.html" class="logo-large">
+            EcoCampus
+            <span>Hub</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-main">
+        <nav aria-label="Main Navigation">
+          <a href="home.html">Home</a>
+          <a href="EcoCampusHub_P9.html">Profile</a>
+          <a href="Eco-Challenges.html">Eco Challenges</a>
+          <a href="event.html">Event</a>
+          <a href="leaderboard.html">Leaderboard</a>
+          <a href="quiz.html">Eco Quiz</a>
+          <a href="Uesr-page.html">User Page</a>
+          <a href="resources.html">Resources</a>
+          <a href="about-us.html">About</a>
+        </nav>
+      </div>
+
+    </div>
+
+    <div class="daily-tip" id="dailyTip">
+      Daily Tip: Use a reusable water bottle instead of plastic.
+    </div>
+  </header>
+
+ <!-- MAIN CONTAINER -->
+  <div class="register-card">
+
+    <h1>Join EcoCampus Hub</h1>
+    <p>Be part of our growing sustainable campus community!</p>
+
+    <form id="registerForm">
+
+      <label for="fullname"><b>Full name*</b></label>
+      <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required>
+
+      <label for="email"><b>Email*</b></label>
+      <input type="email" id="email" name="email" placeholder="name@uqu.edu.sa" required>
+
+
+        <label for="phone"><b>Mobile (SA)*</b></label>
+        <input type="tel" id="phone" name="phone" pattern="^05\d{8}$"
+          title="Start with 05 and 10 digits total "placeholder="(e.g., 05xxxxxxxx)" required>
+
+<button type="submit" class="btn btn-primary">Register</button>
+      
+    </form>
+  </div>
+
+ <!-- FOOTER -->
+  <footer class="footer">
+     <p>&copy; 2025 EcoCampus Hub. Encouraging sustainability within campus life.</p>
+  </footer>
+
+
+
+  <script>
+document.getElementById("registerForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const fullname = document.getElementById("fullname").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+
+    // Save user data
+    const userData = {
+        fullname: fullname,
+        email: email,
+        phone: phone,
+        points: 0,
+        badges: [],
+        joinedChallenges: []
+    };
+
+    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("isLoggedIn", "true");
+
+    alert("🎉 Registration Successful! Welcome to EcoCampus Hub!");
+
+    window.location.href = "EcoCampusHub_P9.html";
+});
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
