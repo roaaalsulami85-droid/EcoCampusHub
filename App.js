@@ -320,7 +320,6 @@ function initRegistrationPage() {
             localStorage.setItem('isLoggedIn', 'true');
             
             // Redirect to profile page
-            alert("🎉 Registration Successful! Welcome to EcoCampus Hub!");
             window.location.href = 'EcoCampusHub_P9.html';
         }
     });
@@ -329,43 +328,28 @@ function initRegistrationPage() {
 // ===============================
 // PROFILE PAGE FUNCTIONALITY
 // ===============================
-
 function initProfilePage() {
     const ecoPointsElement = document.getElementById('ecoPoints');
-    if (!ecoPointsElement) return; // Not on profile page
+    if (!ecoPointsElement) return;
 
-    // Read saved data
+    // Get user data from localStorage
     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
     const isLoggedIn = localStorage.getItem('isLoggedIn');
 
-    // Protect the page
     if (!isLoggedIn) {
         window.location.href = 'login.html';
         return;
     }
 
-    // Display user points
+    // Display user data
     ecoPointsElement.textContent = userData.points || 0;
 
-    // ===========================
-    // SAFE LOGOUT BUTTON HANDLING
-    // ===========================
-
-    // Try old selector (in case teammates used inline onclick)
-    let logoutButton = document.querySelector('button[onclick*="logout"]');
-
-    // Try new class-based selector (your button)
-    if (!logoutButton) {
-        logoutButton = document.querySelector('.logout-btn');
-    }
-
-    // If any logout button exists → attach logout logic
+    // Logout functionality
+    const logoutButton = document.querySelector('button[onclick*="logout"]');
     if (logoutButton) {
         logoutButton.addEventListener('click', function() {
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('userData');
-
-            // Redirect to home (safer than login)
             window.location.href = 'home.html';
         });
     }
@@ -1187,6 +1171,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupPagination(); 
 });
 /*End JS of Leaderboard page by Aryam*/
+
 
 
 
