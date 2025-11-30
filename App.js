@@ -46,28 +46,110 @@ function clearError(input) {
 function initHomePage() {
     if (!document.getElementById('carouselTrack')) return;
 
-    // Dummy data
     const challenges = [
-        { title: "Recycle Plastic", type: "recycling", points: 30 },
-        { title: "Save Electricity", type: "energy", points: 40 },
-        { title: "Turn Off Taps", type: "water", points: 25 },
-        { title: "Use Reusable Bag", type: "recycling", points: 20 },
-        { title: "Plant a Tree", type: "other", points: 50 }
+        {
+            title: "Use Reusable Cup for a Week",
+            description: "Reduce plastic waste by using your own cup for drinks.",
+            points: 100,
+            type: "recycling",
+        },
+        {
+            title: "Turn Off Lights When Leaving",
+            description: "Save energy by turning off lights every time you leave a room.",
+            points: 60,
+            type: "energy",
+        },
+        {
+            title: "Recycle 5 Plastic Bottles",
+            description: "Collect and recycle at least five plastic bottles this week.",
+            points: 80,
+            type: "recycling",
+        },
+        {
+            title: "Create an eco-awareness post on social media",
+            description: "Educate others about sustainability.",
+            points: 150,
+            type: "water",
+        },
+        {
+            title: "Plant a tree or flower",
+            description: "Contribute to a greener environment.",
+            points: 120,
+            type: "water",
+        }
     ];
 
     const students = [
-        { name: "Tala Mohandis", points: 340 },
-        { name: "Sawsan Omar", points: 310 },
-        { name: "Roaa Al-Sulami", points: 285 },
-        { name: "Lamar Alharbi", points: 270 },
-        { name: "Aryam Fadel", points: 260 }
+        {
+            name: "Tala Mohandis",
+            dept: "CS",
+            badges: ["♻️", "⚡"],
+            points: 2340,
+            challenges: 28
+        },
+        {
+            name: "Sawsan Omar",
+            dept: "ENG",
+            badges: ["♻️", "⚡"],
+            points: 2210,
+            challenges: 26
+        },
+        {
+            name: "Roaa Al-Sulami",
+            dept: "BUS",
+            badges: ["♻️", "🌱"],
+            points: 1980,
+            challenges: 22
+        },
+        {
+            name: "Lamar Alharbi",
+            dept: "CS",
+            badges: ["♻️"],
+            points: 1760,
+            challenges: 19
+        },
+        {
+            name: "Aryam Fadel",
+            dept: "ENG",
+            badges: ["🌱"],
+            points: 1640,
+            challenges: 17
+        }
     ];
 
     const events = [
-        { title: "Campus Clean-up", date: "Nov 5, 2025", location: "Main Yard" },
-        { title: "Eco Workshop", date: "Nov 10, 2025", location: "Hall B" },
-        { title: "Tree Planting Day", date: "Nov 15, 2025", location: "University Park" }
+        {
+            title: "Campus Clean-Up",
+            description: "Join the campus clean-up event and help remove waste while learning proper disposal methods."
+        },
+        {
+            title: "Eco Workshop", 
+            description: "A hands-on workshop to teach practical sustainability tips you can apply daily."
+        },
+        {
+            title: "Tree Planting Day",
+            description: "Participate in planting new trees across the campus to support a greener environment."
+        }
     ];
+
+    // Populate Events
+    function displayEvents() {
+        const eventsContainer = document.getElementById('events');
+        if (!eventsContainer) return;
+        
+        eventsContainer.innerHTML = '';
+
+        events.forEach(event => {
+            const eventCard = document.createElement('div');
+            eventCard.className = 'event-card';
+            eventCard.innerHTML = `
+                <h4>${event.title}</h4>
+                <p>${event.description}</p>
+            `;
+            eventsContainer.appendChild(eventCard);
+        });
+    }
+    displayEvents();
 
     // Populate Challenges
     const track = document.getElementById("carouselTrack");
@@ -125,20 +207,6 @@ function initHomePage() {
         });
     }
 
-    // Populate Events
-    const eventsList = document.getElementById("eventsList");
-    if (eventsList) {
-        events.forEach(ev => {
-            const div = document.createElement("div");
-            div.className = "top-card";
-            div.innerHTML = `
-                <h4>${ev.title}</h4>
-                <p>${ev.date} • ${ev.location}</p>
-            `;
-            eventsList.appendChild(div);
-        });
-    }
-
     // Daily tip rotation
     const tips = [
         "Daily Tip: Use a reusable water bottle instead of plastic.",
@@ -165,12 +233,10 @@ function initLoginPage() {
     const loginForm = document.getElementById('loginForm');
     if (!loginForm) return;
 
-    // Demo accounts data
     const demoAccounts = [
         { email: 'student@ecocampus.edu', password: 'demo123' }
     ];
 
-    // Real-time validation
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
 
@@ -194,7 +260,6 @@ function initLoginPage() {
         });
     }
 
-    // Form submission
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -202,7 +267,6 @@ function initLoginPage() {
         const email = emailInput.value;
         const password = passwordInput.value;
 
-        // Validate email
         if (!validateEmail(email)) {
             showError(emailInput, 'Please enter a valid email address');
             isValid = false;
@@ -210,7 +274,6 @@ function initLoginPage() {
             clearError(emailInput);
         }
 
-        // Validate password
         if (password.length < 6) {
             showError(passwordInput, 'Password must be at least 6 characters');
             isValid = false;
@@ -219,17 +282,13 @@ function initLoginPage() {
         }
 
         if (isValid) {
-            // Check against demo accounts
             const demoAccount = demoAccounts.find(acc => 
                 acc.email === email && acc.password === password
             );
 
             if (demoAccount) {
-                // Store login state
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('userEmail', email);
-                
-                // Redirect to home page
                 window.location.href = 'home.html';
             } else {
                 alert('Invalid email or password. Use demo account: student@ecocampus.edu / demo123');
@@ -250,7 +309,6 @@ function initRegistrationPage() {
     const emailInput = document.getElementById('email');
     const phoneInput = document.getElementById('phone');
 
-    // Real-time validation
     if (fullnameInput) {
         fullnameInput.addEventListener('input', () => {
             if (fullnameInput.value.trim().length < 2) {
@@ -281,32 +339,27 @@ function initRegistrationPage() {
         });
     }
 
-    // Form submission
     registerForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         let isValid = true;
 
-        // Validate full name
         if (!fullnameInput.value.trim()) {
             showError(fullnameInput, 'Full name is required');
             isValid = false;
         }
 
-        // Validate email
         if (!validateEmail(emailInput.value)) {
             showError(emailInput, 'Please enter a valid email address');
             isValid = false;
         }
 
-        // Validate phone
         if (!validatePhone(phoneInput.value)) {
             showError(phoneInput, 'Please enter a valid Saudi mobile number (05xxxxxxxx)');
             isValid = false;
         }
 
         if (isValid) {
-            // Store user data
             const userData = {
                 fullname: fullnameInput.value,
                 email: emailInput.value,
@@ -318,8 +371,7 @@ function initRegistrationPage() {
             
             localStorage.setItem('userData', JSON.stringify(userData));
             localStorage.setItem('isLoggedIn', 'true');
-            
-            // Redirect to profile page
+            alert("🎉 Registration Successful! Welcome to EcoCampus Hub!");
             window.location.href = 'EcoCampusHub_P9.html';
         }
     });
@@ -328,11 +380,11 @@ function initRegistrationPage() {
 // ===============================
 // PROFILE PAGE FUNCTIONALITY
 // ===============================
+
 function initProfilePage() {
     const ecoPointsElement = document.getElementById('ecoPoints');
     if (!ecoPointsElement) return;
 
-    // Get user data from localStorage
     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
     const isLoggedIn = localStorage.getItem('isLoggedIn');
 
@@ -341,11 +393,13 @@ function initProfilePage() {
         return;
     }
 
-    // Display user data
     ecoPointsElement.textContent = userData.points || 0;
 
-    // Logout functionality
-    const logoutButton = document.querySelector('button[onclick*="logout"]');
+    let logoutButton = document.querySelector('button[onclick*="logout"]');
+    if (!logoutButton) {
+        logoutButton = document.querySelector('.logout-btn');
+    }
+
     if (logoutButton) {
         logoutButton.addEventListener('click', function() {
             localStorage.removeItem('isLoggedIn');
@@ -354,7 +408,6 @@ function initProfilePage() {
         });
     }
 }
-
 
 // ===============================
 // CHALLENGES PAGE FUNCTIONALITY
@@ -368,7 +421,6 @@ function initChallengesPage() {
             const challengeTitle = this.parentElement.querySelector('h3').textContent;
             const challengePoints = this.parentElement.querySelector('.points').textContent;
             
-            // Get current user data
             const userData = JSON.parse(localStorage.getItem('userData') || '{}');
             const isLoggedIn = localStorage.getItem('isLoggedIn');
 
@@ -378,12 +430,10 @@ function initChallengesPage() {
                 return;
             }
 
-            // Update user data
             if (!userData.joinedChallenges) {
                 userData.joinedChallenges = [];
             }
 
-            // Check if already joined
             if (userData.joinedChallenges.includes(challengeTitle)) {
                 alert('You have already joined this challenge!');
                 return;
@@ -391,16 +441,13 @@ function initChallengesPage() {
 
             userData.joinedChallenges.push(challengeTitle);
             
-            // Extract points from string like "+100 Points"
             const pointsMatch = challengePoints.match(/\d+/);
             if (pointsMatch) {
                 userData.points = (userData.points || 0) + parseInt(pointsMatch[0]);
             }
 
-            // Save updated data
             localStorage.setItem('userData', JSON.stringify(userData));
             
-            // Update button
             this.textContent = 'Joined ✓';
             this.disabled = true;
             this.style.backgroundColor = '#4a9a66';
@@ -410,26 +457,8 @@ function initChallengesPage() {
     });
 }
 
-// // بعدين اشوفه رؤى
-//const joinButtons = document.querySelectorAll('.challenge button');
 
-//joinButtons.forEach(button => {
-//  button.addEventListener('click', () => {
-   
-   // const challengeName = button.parentElement.querySelector('h3').innerText;
-   
-  //  const points = button.parentElement.querySelector('.points').innerText;
-
-  
-   // alert(`You have joined "${challengeName}" and earned ${points}!`);
-
-
-  //  button.disabled = true;
-  //  button.innerText = "Joined";
-//});
-//});
-
-//===============================
+// ===============================
 // QUIZ PAGE FUNCTIONALITY
 // ===============================
 
@@ -700,24 +729,16 @@ function initLeaderboardPage() {
     if (filterForm) {
         filterForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const department = departmentFilter?.value;
             const timeRange = timeRangeFilter?.value;
-            
-            // In a real app, you would filter data here
-            console.log(`Filtering by: Department=${department}, Time Range=${timeRange}`);
-            
-            // For now, just show a message
             alert(`Filters applied: ${department || 'All Departments'}, ${timeRange || 'All Time'}`);
         });
     }
 
-    // Pagination functionality
     const paginationLinks = document.querySelectorAll('nav[aria-label="Leaderboard pages"] a');
     paginationLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            // In a real app, you would load the corresponding page
             console.log('Navigating to page:', this.textContent);
         });
     });
@@ -728,7 +749,7 @@ function initLeaderboardPage() {
 // ===============================
 
 function initEventsPage() {
-const registerButtons = document.querySelectorAll('.event-card .btn-primary');
+    const registerButtons = document.querySelectorAll('.event-card .btn-primary');
     registerButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
@@ -742,7 +763,6 @@ const registerButtons = document.querySelectorAll('.event-card .btn-primary');
                 return;
             }
 
-            // Update button state
             this.textContent = 'Registered ✓';
             this.disabled = true;
             this.style.backgroundColor = '#4a9a66';
@@ -757,7 +777,6 @@ const registerButtons = document.querySelectorAll('.event-card .btn-primary');
 // ===============================
 
 function initUserPage() {
-    // Update user data display
     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
     const isLoggedIn = localStorage.getItem('isLoggedIn');
 
@@ -766,13 +785,11 @@ function initUserPage() {
         return;
     }
 
-    // Update points display
     const pointsElement = document.querySelector('h2');
     if (pointsElement && pointsElement.textContent.includes('Eco Points')) {
         pointsElement.innerHTML = `Eco Points: <span>${userData.points || 0}</span>`;
     }
 
-    // Update level calculation (example: 100 points per level)
     const level = Math.floor((userData.points || 0) / 100);
     const nextLevelPoints = (level + 1) * 100;
     
@@ -798,7 +815,6 @@ function initContactForm() {
         const message = document.getElementById('message')?.value;
 
         if (name && email && message) {
-            // In a real app, you would send this data to a server
             alert('Thank you for your message! We will get back to you soon.');
             contactForm.reset();
         } else {
@@ -808,193 +824,136 @@ function initContactForm() {
 }
 
 // ===============================
-// INITIALIZATION
+// RESOURCES PAGE FUNCTIONALITY - Aryam
 // ===============================
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Set current year on all pages
-    setCurrentYear();
-
-    // Initialize page-specific functionality based on current page
-    const path = window.location.pathname;
-    const page = path.split('/').pop();
-
-    switch(page) {
-        case 'home.html':
-        case 'index.html':
-        case '':
-            initHomePage();
-            break;
-        case 'login.html':
-            initLoginPage();
-            break;
-        case 'EcoCampusHub_R3.html':
-            initRegistrationPage();
-            break;
-        case 'EcoCampusHub_P9.html':
-            initProfilePage();
-            break;
-        case 'Eco-Challenges.html':
-            initChallengesPage();
-            break;
-        case 'quiz.html':
-            initQuizPage();
-            break;
-        case 'leaderboard.html':
-            initLeaderboardPage();
-            break;
-        case 'event.html':
-            initEventsPage();
-            break;
-        case 'Uesr-page.html':
-            initUserPage();
-            break;
-        case 'about-us.html':
-            initContactForm();
-            break;
+function initResourcesPage() {
+    const yearSpan = document.getElementById("year");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Check login state for protected pages
-    const protectedPages = ['EcoCampusHub_P9.html', 'Uesr-page.html', 'Eco-Challenges.html'];
-    if (protectedPages.includes(page) && !localStorage.getItem('isLoggedIn')) {
-        window.location.href = 'login.html';
+    const tips = [
+        "Use a reusable water bottle instead of plastic.",
+        "Turn off lights when you leave the room.",
+        "Sort your waste correctly.",
+        "Bring your own cup to campus cafés.",
+        "Take shorter showers to save water.",
+        "Use natural light instead of lamps.",
+        "Unplug chargers when not in use.",
+        "Use reusable bags instead of plastic.",
+        "Recycle paper and plastic properly."
+    ];
+
+    const tipEl = document.getElementById("dailyTip");
+    if (tipEl && tips.length > 0) {
+        const randomTip = tips[Math.floor(Math.random() * tips.length)];
+        tipEl.textContent = "Daily Tip: " + randomTip;
     }
 
-});
+    const searchForm = document.querySelector("main form[role='search']");
+    if (!searchForm) return; 
 
+    const searchInput = searchForm.querySelector("input[name='q']");
+    const categorySelect = searchForm.querySelector("select[name='category']");
 
-/* JS for Resorses page by Aryam*/
-document.addEventListener("DOMContentLoaded", () => {
-  /* update year of footer */
-  const yearSpan = document.getElementById("year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
+    const articleSection = document.querySelector("section[aria-labelledby='articles-title']");
+    const videoSection = document.querySelector("section[aria-labelledby='videos-title']");
+    const downloadsSection = document.querySelector("section[aria-labelledby='downloads-title']");
 
-  /* Daily Tip random */
-  const tips = [
-    "Use a reusable water bottle instead of plastic.",
-    "Turn off lights when you leave the room.",
-    "Sort your waste correctly.",
-    "Bring your own cup to campus cafés.",
-    "Take shorter showers to save water.",
-    "Use natural light instead of lamps.",
-    "Unplug chargers when not in use.",
-    "Use reusable bags instead of plastic.",
-    "Recycle paper and plastic properly."
-  ];
+    const articleCards = articleSection ? Array.from(articleSection.querySelectorAll("article")) : [];
+    const videoCards = videoSection ? Array.from(videoSection.querySelectorAll("figure")) : [];
+    const downloadItems = downloadsSection ? Array.from(downloadsSection.querySelectorAll("li")) : [];
 
-  const tipEl = document.getElementById("dailyTip");
-  if (tipEl && tips.length > 0) {
-    const randomTip = tips[Math.floor(Math.random() * tips.length)];
-    tipEl.textContent = "Daily Tip: " + randomTip;
-  }
+    const allItems = [...articleCards, ...videoCards, ...downloadItems];
 
-  /* Resources sarech of footer */
+    // Set categories
+    if (articleCards[0]) articleCards[0].dataset.category = "energy";
+    if (articleCards[1]) articleCards[1].dataset.category = "recycling";
+    if (articleCards[2]) articleCards[2].dataset.category = "recycling";
+    if (videoCards[0]) videoCards[0].dataset.category = "events";
+    if (videoCards[1]) videoCards[1].dataset.category = "recycling";
+    if (downloadItems[0]) downloadItems[0].dataset.category = "energy";
+    if (downloadItems[1]) downloadItems[1].dataset.category = "recycling";
+    if (downloadItems[2]) downloadItems[2].dataset.category = "water";
 
-  const searchForm = document.querySelector("main form[role='search']");
-  if (!searchForm) return; 
+    function filterResources() {
+        const term = (searchInput.value || "").trim().toLowerCase();
+        const category = (categorySelect.value || "").trim().toLowerCase();
 
-  const searchInput = searchForm.querySelector("input[name='q']");
-  const categorySelect = searchForm.querySelector("select[name='category']");
+        allItems.forEach((el) => {
+            const text = el.textContent.toLowerCase();
+            const itemCategory = (el.dataset.category || "").toLowerCase();
 
-  const articleSection = document.querySelector(
-    "section[aria-labelledby='articles-title']"
-  );
-  const videoSection = document.querySelector(
-    "section[aria-labelledby='videos-title']"
-  );
-  const downloadsSection = document.querySelector(
-    "section[aria-labelledby='downloads-title']"
-  );
+            let matchTerm = false;
+            if (!term) {
+                matchTerm = true;
+            } else if (text.includes(term)) {
+                matchTerm = true;
+            } else if (term === "video" || term === "videos") {
+                matchTerm = el.tagName.toLowerCase() === "figure"; 
+            } else if (term === "article" || term === "articles" || term === "artical") {
+                matchTerm = el.tagName.toLowerCase() === "article";
+            } else if (term === "download" || term === "guide" || term === "pdf") {
+                matchTerm = el.tagName.toLowerCase() === "li";
+            }
 
-  const articleCards = articleSection
-    ? Array.from(articleSection.querySelectorAll("article"))
-    : [];
-  const videoCards = videoSection
-    ? Array.from(videoSection.querySelectorAll("figure"))
-    : [];
-  const downloadItems = downloadsSection
-    ? Array.from(downloadsSection.querySelectorAll("li"))
-    : [];
+            const matchCategory = !category || itemCategory === category;
 
-  const allItems = [...articleCards, ...videoCards, ...downloadItems];
-
-  // Articale
-  if (articleCards[0]) articleCards[0].dataset.category = "energy";     // 7 Ways to Bring Down Energy...
-  if (articleCards[1]) articleCards[1].dataset.category = "recycling";  // Recycling 101
-  if (articleCards[2]) articleCards[2].dataset.category = "recycling";  // Reusable Habits (نعتبرها Recycling)
-
-  // Viedios
-  if (videoCards[0]) videoCards[0].dataset.category = "events";        // Campus Sustainability Tour
-  if (videoCards[1]) videoCards[1].dataset.category = "recycling";     // How to Sort Recycling Properly
-
-  // Downlode File
-  if (downloadItems[0]) downloadItems[0].dataset.category = "energy";   // Energy-Efficiency Checklist
-  if (downloadItems[1]) downloadItems[1].dataset.category = "recycling";// Campus Recycling Map
-  if (downloadItems[2]) downloadItems[2].dataset.category = "water";    // Water Conservation Tips
-
-  function filterResources() {
-    const term = (searchInput.value || "").trim().toLowerCase();
-    const category = (categorySelect.value || "").trim().toLowerCase();
-
-    allItems.forEach((el) => {
-      const text = el.textContent.toLowerCase();
-      const itemCategory = (el.dataset.category || "").toLowerCase();
-
-    // Smart search: detect keywords like video / article / download
-    let matchTerm = false;
-
-    // 1) If search box empty → match everything
-    if (!term) {
-      matchTerm = true;
+            if (matchTerm && matchCategory) {
+                el.style.display = "";
+                el.classList.add("filtered-result");
+            } else {
+                el.style.display = "none";
+                el.classList.remove("filtered-result");
+            }
+        });
     }
 
-    // 2) Normal text match
-   else if (text.includes(term)) {
-         matchTerm = true;
-    }
-
-    // 3) Keyword → show videos
-    else if (term === "video" || term === "videos") {
-       matchTerm = el.tagName.toLowerCase() === "figure"; 
-    }
-
-    // 4) Keyword → show articles
-    else if (term === "article" || term === "articles" || term === "artical") {
-         matchTerm = el.tagName.toLowerCase() === "article";
-    }
-
-    // 5) Keyword → show downloads
-    else if (term === "download" || term === "guide" || term === "pdf") {
-          matchTerm = el.tagName.toLowerCase() === "li";
-    }
-      const matchCategory = !category || itemCategory === category;
-
-      if (matchTerm && matchCategory) {
-        el.style.display = "";
-        el.classList.add("filtered-result");
-      } else {
-        el.style.display = "none";
-        el.classList.remove("filtered-result");
-      }
+    searchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        filterResources();
     });
-  }
 
-  searchForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    filterResources();
-  });
+    if (searchInput) searchInput.addEventListener("input", filterResources);
+    if (categorySelect) categorySelect.addEventListener("change", filterResources);
+}
 
-  if (searchInput) {
-    searchInput.addEventListener("input", filterResources);
-  }
+// ===============================
+// LEADERBOARD PAGE FUNCTIONALITY - Aryam
+// ===============================
 
-  if (categorySelect) {
-    categorySelect.addEventListener("change", filterResources);
-  }
-});
-/*End JS of resorses page by Aryam*/
+
+function initLeaderboardPage() {
+    const filterForm = document.querySelector('form');
+    const departmentFilter = document.querySelector('select[name="dept"]');
+    const timeRangeFilter = document.querySelector('select[name="range"]');
+
+    if (filterForm) {
+        filterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const department = departmentFilter?.value;
+            const timeRange = timeRangeFilter?.value;
+            
+            // In a real app, you would filter data here
+            console.log(`Filtering by: Department=${department}, Time Range=${timeRange}`);
+            
+            // For now, just show a message
+            alert(`Filters applied: ${department || 'All Departments'}, ${timeRange || 'All Time'}`);
+        });
+    }
+
+    // Pagination functionality
+    const paginationLinks = document.querySelectorAll('nav[aria-label="Leaderboard pages"] a');
+    paginationLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            // In a real app, you would load the corresponding page
+            console.log('Navigating to page:', this.textContent);
+        });
+    });
+}
 
 // JS for Leaderboard by Aryam
 document.addEventListener("DOMContentLoaded", () => {
@@ -1171,9 +1130,56 @@ document.addEventListener("DOMContentLoaded", () => {
   setupPagination(); 
 });
 /*End JS of Leaderboard page by Aryam*/
+// ===============================
+// INITIALIZATION
+// ===============================
 
+document.addEventListener('DOMContentLoaded', function() {
+    setCurrentYear();
 
+    const path = window.location.pathname;
+    const page = path.split('/').pop();
 
+    switch(page) {
+        case 'home.html':
+        case 'index.html':
+        case '':
+            initHomePage();
+            break;
+        case 'login.html':
+            initLoginPage();
+            break;
+        case 'EcoCampusHub_R3.html':
+            initRegistrationPage();
+            break;
+        case 'EcoCampusHub_P9.html':
+            initProfilePage();
+            break;
+        case 'Eco-Challenges.html':
+            initChallengesPage();
+            break;
+        case 'quiz.html':
+            initQuizPage();
+            break;
+        case 'leaderboard.html':
+            initLeaderboardPage();
+            break;
+        case 'event.html':
+            initEventsPage();
+            break;
+        case 'Uesr-page.html':
+            initUserPage();
+            break;
+        case 'about-us.html':
+            initContactForm();
+            break;
+        case 'resources.html':
+            initResourcesPage();
+            break;
+    }
 
-
-
+    const protectedPages = ['EcoCampusHub_P9.html', 'Uesr-page.html', 'Eco-Challenges.html'];
+    if (protectedPages.includes(page) && !localStorage.getItem('isLoggedIn')) {
+        window.location.href = 'login.html';
+    }
+});
