@@ -3,45 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>User Dashboard</title>
-  
-
 </head>
 <body>
-   <nav aria-label="Main">
-  <a href="home.html">Home</a>
-  <a href="login.html">Log-in</a>
-  <a href="EcoCampusHub_R3.html">Register</a>
-  <a href="EcoCampusHub_P9.html">Profile</a>
-  <a href="Eco-Challenges.html">Eco Challenges</a>
-  <a href="event.html">Event</a>
-  <a href="leaderboard.html">Leaderboard</a>
-  <a href="quiz.html">Eco Quiz</a>
-  <a href="Uesr-page.html">User Page</a>
-  <a href="resources.html">Resources</a>
-  <a href="about-us.html">About</a>
-</nav>
 
-  <h1>User Dashboard</h1>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
 
-  <h2>User Information</h2>
-  <p><strong>Name:</strong> Hero</p>
-  <p id="ecoPoints"><strong>Eco Points:</strong> 0</p>
-  <p id="level">Level: 0 | Next level at 1600 pts</p>
+      <div class="logo-section">
+        <div class="logo-main">
+          <a href="home.html" class="logo-large">
+            EcoCampus <span>Hub</span>
+          </a>
+        </div>
+      </div>
 
-  <h2>Your Challenges</h2>
-  <button id="toggleChallenges">Toggle Challenges</button>
-  <ul id="challengesList">
-    <li class="challenge-item" data-points="100">Recycle Week — +100 pts</li>
-    <li class="challenge-item" data-points="80">Bike to Work — +80 pts</li>
-  </ul>
+      <div class="nav-main">
+        <nav aria-label="Main Navigation">
+          <a href="home.html">Home</a>
+          <a href="EcoCampusHub_P9.html">Profile</a>
+          <a href="Eco-Challenges.html">Eco Challenges</a>
+          <a href="event.html">Event</a>
+          <a href="leaderboard.html">Leaderboard</a>
+          <a href="quiz.html">Eco Quiz</a>
+          <a href="Uesr-page.html">User Page</a>
+          <a href="resources.html">Resources</a>
+          <a href="about-us.html">About</a>
+        </nav>
+      </div>
 
+      <div class="top-green-bar"></div>
+    </div>
+  </header>
+
+  <!-- USER INFO -->
+  <main class="container">
+    <h1>Welcome, Hero</h1>
+    <h2 id="ecoPoints">Eco Points: 0</h2>
+    <p id="level">Level: 0 | Next level at 1600 pts</p>
+    <hr>
+
+    <h3>Your Challenges</h3>
+    <button id="toggleChallenges" class="btn btn-outline">Toggle Challenges</button>
+
+    <ul id="challengesList">
+      <li class="challenge-item" data-points="100">Recycle Week — +100 pts</li>
+      <li class="challenge-item" data-points="80">Bike to Work — +80 pts</li>
+    </ul>
+
+    <hr>
+
+   <!-- QUICK LINKS -->
+<div class="card quick-links">
   <h2>Quick Links</h2>
-  <ul>
-    <li><a href="Eco-Challenges.html">Start a Challenge</a></li>
-    <li><a href="Eco-Events.html">View Events</a></li>
-  </ul>
 
+  <div class="quick-links-box">
+    <a href="Eco-Challenges.html" class="quick-link-btn">Start a Challenge</a>
+    <a href="Eco-Events.html" class="quick-link-btn">View Events</a>
+  </div>
+</div>
+
+  </main>
+
+  <!-- SCRIPT -->
   <script>
     const toggleChallengesBtn = document.getElementById("toggleChallenges");
     const challengesList = document.getElementById("challengesList");
@@ -53,7 +79,8 @@
     const nextLevelPoints = 1600;
 
     toggleChallengesBtn.addEventListener("click", () => {
-      challengesList.style.display = challengesList.style.display === "none" ? "block" : "none";
+      challengesList.style.display =
+        challengesList.style.display === "none" ? "block" : "none";
     });
 
     const challengeItems = document.querySelectorAll(".challenge-item");
@@ -73,5 +100,18 @@
       });
     });
   </script>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> EcoCampus Hub. Encouraging sustainability within campus life.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
 </body>
 </html>
+
