@@ -67,39 +67,7 @@
 
   </main>
 
-  <!-- SCRIPT -->
-  <script>
-    const toggleChallengesBtn = document.getElementById("toggleChallenges");
-    const challengesList = document.getElementById("challengesList");
-    const ecoPointsDisplay = document.getElementById("ecoPoints");
-    const levelDisplay = document.getElementById("level");
 
-    let ecoPoints = 0;
-    let level = 0;
-    const nextLevelPoints = 1600;
-
-    toggleChallengesBtn.addEventListener("click", () => {
-      challengesList.style.display =
-        challengesList.style.display === "none" ? "block" : "none";
-    });
-
-    const challengeItems = document.querySelectorAll(".challenge-item");
-
-    challengeItems.forEach(item => {
-      item.addEventListener("click", () => {
-        const points = parseInt(item.dataset.points);
-        ecoPoints += points;
-        ecoPointsDisplay.textContent = `Eco Points: ${ecoPoints}`;
-
-        level = Math.floor(ecoPoints / nextLevelPoints);
-        levelDisplay.textContent = `Level: ${level} | Next level at ${nextLevelPoints} pts`;
-
-        item.style.textDecoration = "line-through";
-        item.style.opacity = "0.6";
-        item.style.pointerEvents = "none";
-      });
-    });
-  </script>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -112,7 +80,12 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
+
+  <script src="script.js"></script>
+
+
 </body>
 </html>
+
 
 
