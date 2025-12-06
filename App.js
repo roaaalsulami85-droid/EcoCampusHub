@@ -777,27 +777,68 @@ function initEventsPage() {
 // ===============================
 
 function initUserPage() {
+    // جلب بيانات المستخدم
     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
     const isLoggedIn = localStorage.getItem('isLoggedIn');
 
+    // التأكد من تسجيل الدخول
     if (!isLoggedIn) {
         window.location.href = 'login.html';
         return;
     }
 
-    const pointsElement = document.querySelector('h2');
-    if (pointsElement && pointsElement.textContent.includes('Eco Points')) {
-        pointsElement.innerHTML = `Eco Points: <span>${userData.points || 0}</span>`;
+    // تحديث عرض Eco Points
+    const pointsElement = document.querySelector('#ecoPoints'); // استخدم ID بدل h2 عام
+    let ecoPoints = userData.points || 0;
+    if (pointsElement) {
+        pointsElement.textContent = `Eco Points: ${ecoPoints}`;
     }
 
-    const level = Math.floor((userData.points || 0) / 100);
+    // تحديث عرض Level
+    let level = Math.floor(ecoPoints / 100);
     const nextLevelPoints = (level + 1) * 100;
-    
-    const levelElement = document.querySelector('p');
-    if (levelElement && levelElement.textContent.includes('Level')) {
+    const levelElement = document.querySelector('#level'); // استخدم ID بدل p عام
+    if (levelElement) {
         levelElement.textContent = `Level: ${level} | Next level at ${nextLevelPoints} pts`;
     }
+
+    // ===============================
+    // CHALLENGES INTERACTIONS
+    // ===============================
+    const toggleChallengesBtn = document.getElementById("toggleChallenges");
+    const challengesList = document.getElementById("challengesList");
+
+    if (toggleChallengesBtn && challengesList) {
+        toggleChallengesBtn.addEventListener("click", () => {
+            challengesList.style.display =
+                challengesList.style.display === "none" ? "block" : "none";
+        });
+    }
+
+    const challengeItems = document.querySelectorAll(".challenge-item");
+    challengeItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const points = parseInt(item.dataset.points) || 0;
+            ecoPoints += points;
+            if (pointsElement) pointsElement.textContent = `Eco Points: ${ecoPoints}`;
+
+            level = Math.floor(ecoPoints / 1600); // تحديات: كل 1600 نقطة مستوى جديد
+            if (levelElement) levelElement.textContent = `Level: ${level} | Next level at 1600 pts`;
+
+            // تعليم أن التحدي مكتمل
+            item.style.textDecoration = "line-through";
+            item.style.opacity = "0.6";
+            item.style.pointerEvents = "none";
+
+            // تحديث البيانات في localStorage
+            userData.points = ecoPoints;
+            localStorage.setItem('userData', JSON.stringify(userData));
+        });
+    });
 }
+
+// استدعاء الدالة بعد تحميل الصفحة
+document.addEventListener("DOMContentLoaded", initUserPage);
 
 // ===============================
 // CONTACT FORM FUNCTIONALITY
@@ -1183,3 +1224,4 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'login.html';
     }
 });
+
