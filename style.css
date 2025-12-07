@@ -1137,7 +1137,6 @@ aside {
 }
 
 
-/* الخلفية العامة مثل الهوم */
 body {
   background: linear-gradient(180deg, #fff, var(--beige));
   margin: 0;
@@ -1748,6 +1747,7 @@ h3 {
   h2 {
     font-size: 1.3rem;
   }
+}
 
 /*=======================================
 ------------ register + profile ---------
@@ -1902,4 +1902,3 @@ footer,
   padding: 1.6rem;
   margin-top: 3rem;
 }
-
