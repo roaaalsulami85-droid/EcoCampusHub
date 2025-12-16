@@ -777,30 +777,19 @@ function initEventsPage() {
 // ===============================
 
 function initUserPage() {
-    // جلب بيانات المستخدم
-    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
 
-    // التأكد من تسجيل الدخول
-    if (!isLoggedIn) {
-        window.location.href = 'login.html';
-        return;
-    }
+    const toggleChallengesBtn = document.getElementById("toggleChallenges");
+    const challengesList = document.getElementById("challengesList");
 
-    // تحديث عرض Eco Points
-    const pointsElement = document.querySelector('#ecoPoints'); // استخدم ID بدل h2 عام
-    let ecoPoints = userData.points || 0;
-    if (pointsElement) {
-        pointsElement.textContent = `Eco Points: ${ecoPoints}`;
+    if (toggleChallengesBtn && challengesList) {
+        toggleChallengesBtn.addEventListener("click", () => {
+            challengesList.style.display =
+                challengesList.style.display === "none" ? "block" : "none";
+        });
     }
+}
 
-    // تحديث عرض Level
-    let level = Math.floor(ecoPoints / 100);
-    const nextLevelPoints = (level + 1) * 100;
-    const levelElement = document.querySelector('#level'); // استخدم ID بدل p عام
-    if (levelElement) {
-        levelElement.textContent = `Level: ${level} | Next level at ${nextLevelPoints} pts`;
-    }
+document.addEventListener("DOMContentLoaded", initUserPage);
 
     // ===============================
     // CHALLENGES INTERACTIONS
@@ -1224,4 +1213,5 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'login.html';
     }
 });
+
 
