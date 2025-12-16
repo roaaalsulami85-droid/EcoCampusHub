@@ -49,7 +49,7 @@
     <h1>Join EcoCampus Hub</h1>
     <p>Be part of our growing sustainable campus community!</p>
 
-    <form id="registerForm">
+<form id="registerForm" method="POST" action="user_backend.php">
 
       <label for="fullname"><b>Full name*</b></label>
       <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required>
@@ -62,7 +62,9 @@
         <input type="tel" id="phone" name="phone" pattern="^05\d{8}$"
           title="Start with 05 and 10 digits total "placeholder="(e.g., 05xxxxxxxx)" required>
 
-<button type="submit" class="btn btn-primary">Register</button>
+<button type="submit" name="action" value="register" class="btn btn-primary">
+    Register
+</button>
       
     </form>
   </div>
@@ -82,6 +84,7 @@
 
 </body>
 </html>
+
 
 
 
