@@ -824,7 +824,7 @@ document.addEventListener("DOMContentLoaded", initUserPage);
             localStorage.setItem('userData', JSON.stringify(userData));
         });
     });
-}
+//}
 
 // استدعاء الدالة بعد تحميل الصفحة
 document.addEventListener("DOMContentLoaded", initUserPage);
@@ -986,179 +986,117 @@ function initLeaderboardPage() {
 }
 
 // JS for Leaderboard by Aryam
-document.addEventListener("DOMContentLoaded", () => {
-  updateYear();
-  setupDailyTip();
-  initLeaderboardFilters();
-});
+/* ==========================
+   LEADERBOARD (FIXED)
+   ========================== */
 
-/* Footer year*/
-function updateYear() {
-  const yearSpan = document.getElementById("year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
-}
-
-/* Daily Tip */
-function setupDailyTip() {
-  const tips = [
-    "Use a reusable water bottle instead of plastic.",
-    "Turn off lights when you leave the room.",
-    "Sort your waste correctly.",
-    "Bring your own cup to campus cafés.",
-    "Take shorter showers to save water.",
-    "Use natural light instead of lamps.",
-    "Unplug chargers when not in use.",
-    "Use reusable bags instead of plastic.",
-    "Recycle paper and plastic properly."
-  ];
-
-  const tipEl = document.getElementById("dailyTip");
-  if (tipEl && tips.length > 0) {
-    const randomTip = tips[Math.floor(Math.random() * tips.length)];
-    tipEl.textContent = "Daily Tip: " + randomTip;
-  }
-}
-
-/* Leaderboard filters (Department + Time Range) */
-function initLeaderboardFilters() {
+function initLeaderboard() {
   const table = document.querySelector(".leaderboard-table");
+  const pagination = document.querySelector(".pagination");
   const filterForm = document.querySelector(".filter-form");
-  if (!table || !filterForm) return; 
+
+  if (!table || !pagination || !filterForm) return;
 
   const deptSelect = document.getElementById("dept");
   const rangeSelect = document.getElementById("range");
   const boardTitle = document.getElementById("board-title");
-  const rows = Array.from(table.querySelectorAll("tbody tr"));
 
-  const rowData = rows.map((row, index) => {
-    const cells = row.querySelectorAll("td");
-    const dept = cells[2]?.textContent.trim(); 
+  const allRows = Array.from(table.querySelectorAll("tbody tr"));
+  const rowsPerPage = 5;
 
-   
-    let ranges = "all";
-    if (index === 0) ranges = "all,month,week";      
-    else if (index === 1) ranges = "all,month,week"; 
-    else if (index === 2) ranges = "all,month";      
-    else if (index === 3) ranges = "all,week";       
-    else if (index === 4) ranges = "all,week";      
-
-    row.dataset.dept = dept;
-    row.dataset.ranges = ranges;
-
-    return { row, dept, ranges };
-  });
-
-  function applyLeaderboardFilters(e) {
-    if (e) e.preventDefault();
-
-    const selectedDept = (deptSelect?.value || "").trim();  
-    const selectedRange = (rangeSelect?.value || "all").trim(); 
-
-    rowData.forEach(({ row, dept, ranges }) => {
-      const deptMatch = !selectedDept || dept === selectedDept;
-      const rangeList = ranges.split(","); // ["all","month",...]
-      const rangeMatch = selectedRange === "all" || rangeList.includes(selectedRange);
-
-      if (deptMatch && rangeMatch) {
-        row.style.display = "";
-      } else {
-        row.style.display = "none";
-      }
-    });
-
-    if (boardTitle) {
-      if (selectedRange === "month") {
-        boardTitle.textContent = "This Month's Rankings";
-      } else if (selectedRange === "week") {
-        boardTitle.textContent = "This Week's Rankings";
-      } else {
-        boardTitle.textContent = "All-time Rankings";
-      }
-    }
-  }
-
-  filterForm.addEventListener("submit", applyLeaderboardFilters);
-  if (deptSelect) deptSelect.addEventListener("change", applyLeaderboardFilters);
-  if (rangeSelect) rangeSelect.addEventListener("change", applyLeaderboardFilters);
-}
-
-function setupPagination() {
-  const table = document.querySelector(".leaderboard-table");
-  const pagination = document.querySelector(".pagination");
-
-  if (!table || !pagination) return;
-
-  const rows = Array.from(table.querySelectorAll("tbody tr"));
-  const totalPages = 5;
-  const rowsPerPage = Math.ceil(rows.length / totalPages);
-
+  let filteredRows = [...allRows];
   let currentPage = 1;
 
-  pagination.innerHTML = `
-    <button class="prev">« Prev</button>
-    <button class="page-num" data-page="1">1</button>
-    <button class="page-num" data-page="2">2</button>
-    <button class="page-num" data-page="3">3</button>
-    <button class="page-num" data-page="4">4</button>
-    <button class="page-num" data-page="5">5</button>
-    <button class="next">Next »</button>
-  `;
+  // assign demo ranges
+  allRows.forEach((row, i) => {
+    row.dataset.dept = row.children[2].textContent.trim();
+    row.dataset.range =
+      i <= 1 ? "all,month,week" :
+      i <= 3 ? "all,month" :
+               "all,week";
+  });
 
-  const prevBtn = pagination.querySelector(".prev");
-  const nextBtn = pagination.querySelector(".next");
-  const pageButtons = pagination.querySelectorAll(".page-num");
+  function applyFilters(e) {
+    if (e) e.preventDefault();
 
-  function showPage(page) {
-    currentPage = page;
+    const dept = deptSelect.value;
+    const range = rangeSelect.value;
 
-    rows.forEach((row) => (row.style.display = "none"));
+    filteredRows = allRows.filter(row => {
+      const deptMatch = !dept || row.dataset.dept === dept;
+      const rangeMatch =
+        range === "all" || row.dataset.range.includes(range);
+      return deptMatch && rangeMatch;
+    });
 
-    const start = (page - 1) * rowsPerPage;
+    boardTitle.textContent =
+      range === "month" ? "This Month's Rankings" :
+      range === "week"  ? "This Week's Rankings" :
+                          "All-time Rankings";
+
+    currentPage = 1;
+    render();
+  }
+
+  function render() {
+    allRows.forEach(r => (r.style.display = "none"));
+
+    const start = (currentPage - 1) * rowsPerPage;
     const end = start + rowsPerPage;
 
-    rows.slice(start, end).forEach((row) => {
-      row.style.display = "";
+    filteredRows.slice(start, end).forEach(r => {
+      r.style.display = "";
     });
 
-    updateButtons();
+    renderPagination();
   }
 
-  function updateButtons() {
-    pageButtons.forEach((btn) => {
-      const num = Number(btn.dataset.page);
-      btn.classList.toggle("active-page", num === currentPage);
-    });
+  function renderPagination() {
+    pagination.innerHTML = "";
 
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
+    const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+    const prev = document.createElement("button");
+    prev.textContent = "« Prev";
+    prev.disabled = currentPage === 1;
+    prev.onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        render();
+      }
+    };
+    pagination.appendChild(prev);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.className = "page-num";
+      if (i === currentPage) btn.classList.add("active-page");
+      btn.onclick = () => {
+        currentPage = i;
+        render();
+      };
+      pagination.appendChild(btn);
+    }
+
+    const next = document.createElement("button");
+    next.textContent = "Next »";
+    next.disabled = currentPage === totalPages;
+    next.onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        render();
+      }
+    };
+    pagination.appendChild(next);
   }
 
-  pageButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const num = Number(btn.dataset.page);
-      if (num !== currentPage) showPage(num);
-    });
-  });
+  filterForm.addEventListener("submit", applyFilters);
+  deptSelect.addEventListener("change", applyFilters);
+  rangeSelect.addEventListener("change", applyFilters);
 
-  prevBtn.addEventListener("click", () => {
-    if (currentPage > 1) showPage(currentPage - 1);
-  });
-
-  nextBtn.addEventListener("click", () => {
-    if (currentPage < totalPages) showPage(currentPage + 1);
-  });
-
-  showPage(1);
+  applyFilters();
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  updateYear();
-  setupDailyTip();
-  initLeaderboardFilters();
-  setupPagination(); 
-});
 /*End JS of Leaderboard page by Aryam*/
 // ===============================
 // INITIALIZATION
@@ -1192,7 +1130,7 @@ document.addEventListener('DOMContentLoaded', function() {
             initQuizPage();
             break;
         case 'leaderboard.html':
-            initLeaderboardPage();
+            initLeaderboard();
             break;
         case 'event.html':
             initEventsPage();
@@ -1213,5 +1151,4 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'login.html';
     }
 });
-
 
